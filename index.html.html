@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Ashu Kumawat — Electrical & Automation Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Barlow:wght@300;400;600;700;900&family=Barlow+Condensed:wght@700;900&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: #0a0c0f;
+    --bg2: #0f1215;
+    --bg3: #141820;
+    --accent: #00d4ff;
+    --accent2: #ff6b00;
+    --text: #c8d0dc;
+    --muted: #4a5568;
+    --border: #1e2535;
+    --mono: 'Share Tech Mono', monospace;
+    --sans: 'Barlow', sans-serif;
+    --cond: 'Barlow Condensed', sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* GRID OVERLAY */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,212,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,212,255,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.2rem 3rem;
+    background: rgba(10,12,15,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    font-family: var(--mono);
+    font-size: 0.9rem;
+    color: var(--accent);
+    letter-spacing: 0.05em;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--accent); }
+
+  /* HERO */
+  #hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 0 3rem;
+    overflow: hidden;
+  }
+
+  .hero-bg-text {
+    position: absolute;
+    right: -2rem;
+    top: 50%;
+    transform: translateY(-50%) rotate(90deg);
+    font-family: var(--cond);
+    font-size: clamp(6rem, 18vw, 22rem);
+    font-weight: 900;
+    color: rgba(0,212,255,0.03);
+    letter-spacing: -0.05em;
+    white-space: nowrap;
+    user-select: none;
+    line-height: 1;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 850px;
+  }
+
+  .hero-tag {
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    color: var(--accent);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+
+  .hero-tag::before {
+    content: '';
+    display: inline-block;
+    width: 2rem;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  .hero-name {
+    font-family: var(--cond);
+    font-size: clamp(3.5rem, 8vw, 7rem);
+    font-weight: 900;
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  .hero-name span {
+    display: block;
+    -webkit-text-stroke: 1px var(--accent);
+    color: transparent;
+  }
+
+  .hero-title {
+    font-family: var(--sans);
+    font-size: clamp(1rem, 2vw, 1.3rem);
+    font-weight: 400;
+    color: var(--muted);
+    margin-bottom: 2.5rem;
+    letter-spacing: 0.05em;
+  }
+
+  .hero-title strong {
+    color: var(--accent2);
+    font-weight: 600;
+  }
+
+  .hero-desc {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--text);
+    max-width: 560px;
+    margin-bottom: 3rem;
+    opacity: 0.8;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.9rem 2rem;
+    text-decoration: none;
+    transition: all 0.25s;
+    cursor: pointer;
+    display: inline-block;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: #000;
+    font-weight: 700;
+  }
+
+  .btn-primary:hover {
+    background: transparent;
+    color: var(--accent);
+    outline: 1px solid var(--accent);
+  }
+
+  .btn-outline {
+    border: 1px solid var(--muted);
+    color: var(--muted);
+  }
+
+  .btn-outline:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  /* SECTION BASE */
+  section {
+    position: relative;
+    z-index: 1;
+    padding: 6rem 3rem;
+  }
+
+  .section-label {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--accent);
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    margin-bottom: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+
+  .section-label::before {
+    content: '';
+    width: 1.5rem;
+    height: 1px;
+    background: var(--accent);
+    display: inline-block;
+  }
+
+  .section-title {
+    font-family: var(--cond);
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    margin-bottom: 3rem;
+    line-height: 1;
+  }
+
+  /* ABOUT */
+  #about {
+    background: var(--bg2);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .about-text p {
+    font-size: 1rem;
+    line-height: 1.9;
+    color: var(--text);
+    opacity: 0.85;
+    margin-bottom: 1.2rem;
+  }
+
+  .about-text p strong {
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  .about-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .stat-box {
+    background: var(--bg3);
+    padding: 2rem;
+  }
+
+  .stat-num {
+    font-family: var(--cond);
+    font-size: 3.5rem;
+    font-weight: 900;
+    line-height: 1;
+    color: var(--accent);
+    margin-bottom: 0.3rem;
+  }
+
+  .stat-label {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+
+  /* SKILLS */
+  #skills { background: var(--bg); }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .skill-card {
+    background: var(--bg2);
+    padding: 2rem;
+    transition: background 0.2s;
+  }
+
+  .skill-card:hover { background: var(--bg3); }
+
+  .skill-card-icon {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+  }
+
+  .skill-card-title {
+    font-family: var(--cond);
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--accent2);
+    margin-bottom: 1rem;
+  }
+
+  .skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .tag {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    padding: 0.3rem 0.7rem;
+    border: 1px solid var(--border);
+    color: var(--text);
+    letter-spacing: 0.05em;
+  }
+
+  .tag:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  /* PROJECTS */
+  #projects {
+    background: var(--bg2);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .project-card {
+    background: var(--bg);
+    padding: 2.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.2s;
+  }
+
+  .project-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent), transparent);
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+
+  .project-card:hover { background: var(--bg3); }
+  .project-card:hover::before { opacity: 1; }
+
+  .project-num {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--muted);
+    letter-spacing: 0.15em;
+    margin-bottom: 1.2rem;
+  }
+
+  .project-title {
+    font-family: var(--cond);
+    font-size: 1.3rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: #fff;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+
+  .project-desc {
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: var(--muted);
+    margin-bottom: 1.5rem;
+  }
+
+  .project-tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .tech-badge {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    padding: 0.25rem 0.6rem;
+    background: rgba(0,212,255,0.08);
+    color: var(--accent);
+    letter-spacing: 0.08em;
+    border: 1px solid rgba(0,212,255,0.2);
+  }
+
+  /* CONTACT */
+  #contact { background: var(--bg); }
+
+  .contact-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .contact-info p {
+    font-size: 1rem;
+    line-height: 1.9;
+    color: var(--text);
+    opacity: 0.8;
+    margin-bottom: 2rem;
+  }
+
+  .contact-links {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .contact-link {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    padding: 1.2rem 1.5rem;
+    background: var(--bg2);
+    text-decoration: none;
+    transition: background 0.2s;
+    color: var(--text);
+  }
+
+  .contact-link:hover {
+    background: var(--bg3);
+    color: var(--accent);
+  }
+
+  .contact-link-icon {
+    font-size: 1.2rem;
+    width: 2rem;
+    text-align: center;
+  }
+
+  .contact-link-label {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    margin-bottom: 0.1rem;
+    text-transform: uppercase;
+  }
+
+  .contact-link-value {
+    font-size: 0.95rem;
+    color: inherit;
+  }
+
+  /* TERMINAL BOX */
+  .terminal {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    padding: 2rem;
+    font-family: var(--mono);
+  }
+
+  .terminal-bar {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .terminal-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+  }
+
+  .terminal-dot:nth-child(1) { background: #ff5f57; }
+  .terminal-dot:nth-child(2) { background: #ffbd2e; }
+  .terminal-dot:nth-child(3) { background: #28c840; }
+
+  .terminal-line {
+    font-size: 0.8rem;
+    line-height: 2;
+    color: var(--muted);
+  }
+
+  .terminal-line .cmd { color: var(--accent); }
+  .terminal-line .val { color: #a8d8a8; }
+  .terminal-line .key { color: var(--accent2); }
+
+  /* FOOTER */
+  footer {
+    position: relative;
+    z-index: 1;
+    border-top: 1px solid var(--border);
+    padding: 2rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  footer span {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+  }
+
+  /* DIVIDER */
+  .divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    opacity: 0.3;
+    margin: 1rem 0 3rem;
+  }
+
+  /* ANIMATIONS */
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  .cursor {
+    display: inline-block;
+    width: 2px;
+    height: 1em;
+    background: var(--accent);
+    margin-left: 2px;
+    vertical-align: middle;
+    animation: blink 1s infinite;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-content > * {
+    animation: fadeUp 0.6s ease both;
+  }
+
+  .hero-tag { animation-delay: 0.1s; }
+  .hero-name { animation-delay: 0.2s; }
+  .hero-title { animation-delay: 0.3s; }
+  .hero-desc { animation-delay: 0.4s; }
+  .hero-cta { animation-delay: 0.5s; }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    section { padding: 4rem 1.5rem; }
+    #hero { padding: 0 1.5rem; }
+    .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .contact-wrapper { grid-template-columns: 1fr; gap: 3rem; }
+    footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">AK_PORTFOLIO.exe</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg-text">AUTOMATION</div>
+  <div class="hero-content">
+    <div class="hero-tag">Electrical &amp; Automation Engineer</div>
+    <h1 class="hero-name">
+      Ashu
+      <span>Kumawat</span>
+    </h1>
+    <div class="hero-title">
+      Panel Design · <strong>PLC Programming</strong> · Industrial Automation
+    </div>
+    <p class="hero-desc">
+      Building reliable electrical control systems — from panel hardware to PLC logic. 
+      Currently working in Jaipur, pushing toward full-stack automation: hardware + software + SCADA.
+    </p>
+    <div class="hero-cta">
+      <a href="#projects" class="btn btn-primary">View Projects</a>
+      <a href="#contact" class="btn btn-outline">Get in Touch</a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-label">01 — Who I Am</div>
+  <h2 class="section-title">About</h2>
+  <div class="divider"></div>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>
+        I'm an <strong>Electrical & Automation Engineer</strong> based in Jaipur, Rajasthan. 
+        I work at Engineers & Engineers (Electricals) Pvt. Ltd., where I handle panel design, 
+        component sizing, and automation engineering.
+      </p>
+      <p>
+        My background spans <strong>relay logic circuits, VFD panel design, MCCB/contactor selection</strong>, 
+        and control transformer specification — with hands-on work on DOL starters, Star-Delta, 
+        and APFC panel protection schemes.
+      </p>
+      <p>
+        On the software side, I'm actively building PLC programming skills in 
+        <strong>Siemens TIA Portal (S7-1200)</strong>, practicing with Factory I/O and PLCSIM Advanced. 
+        My long-term goal is industrial automation — PLC + SCADA, system integration, and eventually 
+        high-end sectors like pharma or oil & gas.
+      </p>
+      <p>
+        Self-driven. 10+ months of independent study before my first role. 
+        I don't wait for someone to teach me — I build the roadmap myself.
+      </p>
+    </div>
+    <div>
+      <div class="about-stats">
+        <div class="stat-box">
+          <div class="stat-num">10+</div>
+          <div class="stat-label">Months Self-Study</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">500</div>
+          <div class="stat-label">Automation Tasks</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">S7</div>
+          <div class="stat-label">1200 / TIA Portal</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">IEC</div>
+          <div class="stat-label">61439 Standard</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-label">02 — What I Know</div>
+  <h2 class="section-title">Skills</h2>
+  <div class="divider"></div>
+  <div class="skills-grid">
+    <div class="skill-card">
+      <div class="skill-card-icon">⚡</div>
+      <div class="skill-card-title">Panel Engineering</div>
+      <div class="skill-tags">
+        <span class="tag">VFD Panels</span>
+        <span class="tag">DOL Starters</span>
+        <span class="tag">Star-Delta</span>
+        <span class="tag">MCCB Selection</span>
+        <span class="tag">Busbar Design</span>
+        <span class="tag">Contactor Sizing</span>
+        <span class="tag">MPCB</span>
+        <span class="tag">Control Transformer</span>
+        <span class="tag">APFC Panels</span>
+        <span class="tag">L&T dsine Series</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-icon">🔧</div>
+      <div class="skill-card-title">PLC & Automation</div>
+      <div class="skill-tags">
+        <span class="tag">Siemens S7-1200</span>
+        <span class="tag">TIA Portal V15/V20</span>
+        <span class="tag">Ladder Logic</span>
+        <span class="tag">Factory I/O</span>
+        <span class="tag">PLCSIM Advanced</span>
+        <span class="tag">HMI Basics</span>
+        <span class="tag">SCADA (Study)</span>
+        <span class="tag">Interlock Logic</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-icon">📐</div>
+      <div class="skill-card-title">Control Circuits</div>
+      <div class="skill-tags">
+        <span class="tag">Relay Logic</span>
+        <span class="tag">Forward-Reverse</span>
+        <span class="tag">Fault Annunciator</span>
+        <span class="tag">Auto F/R Circuit</span>
+        <span class="tag">ACB Control</span>
+        <span class="tag">PID Theory</span>
+        <span class="tag">Circuit Tracing</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-icon">📋</div>
+      <div class="skill-card-title">Standards & Design</div>
+      <div class="skill-tags">
+        <span class="tag">IEC 61439</span>
+        <span class="tag">IS 3043 Earthing</span>
+        <span class="tag">Type 2 Coordination</span>
+        <span class="tag">GA Drawings</span>
+        <span class="tag">Panel Costing</span>
+        <span class="tag">BOM / BOQ</span>
+        <span class="tag">Fall of Potential</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-icon">🛠️</div>
+      <div class="skill-card-title">Electronics & DIY</div>
+      <div class="skill-tags">
+        <span class="tag">24V PSU Design</span>
+        <span class="tag">NTC Thermistor</span>
+        <span class="tag">Soft-Start Circuit</span>
+        <span class="tag">Solar Charging</span>
+        <span class="tag">Bench PSU</span>
+        <span class="tag">Circuit Simulation</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-icon">💻</div>
+      <div class="skill-card-title">Tools & Software</div>
+      <div class="skill-tags">
+        <span class="tag">TIA Portal</span>
+        <span class="tag">Factory I/O</span>
+        <span class="tag">PLCSIM Advanced</span>
+        <span class="tag">SFTP Server</span>
+        <span class="tag">MS Excel</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-label">03 — What I've Built</div>
+  <h2 class="section-title">Projects</h2>
+  <div class="divider"></div>
+  <div class="projects-grid">
+    <div class="project-card">
+      <div class="project-num">PRJ_001</div>
+      <div class="project-title">500-Task Automation Mastery Workbook</div>
+      <div class="project-desc">
+        Self-designed structured workbook covering 500 progressive automation tasks — 
+        relay logic, PLC programming, VFD control, HMI, and SCADA. Built as a personal 
+        skill-building framework for becoming job-ready as a PLC programmer.
+      </div>
+      <div class="project-tech">
+        <span class="tech-badge">Siemens S7-1200</span>
+        <span class="tech-badge">TIA Portal</span>
+        <span class="tech-badge">Factory I/O</span>
+        <span class="tech-badge">Self-Study</span>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-num">PRJ_002</div>
+      <div class="project-title">ACB Control Circuit Design</div>
+      <div class="project-desc">
+        Designed and implemented an ACB (Air Circuit Breaker) control circuit 
+        when challenged by a senior engineer on the job. Demonstrated deep 
+        understanding of protection interlocks and control wiring under pressure.
+      </div>
+      <div class="project-tech">
+        <span class="tech-badge">ACB Control</span>
+        <span class="tech-badge">Relay Logic</span>
+        <span class="tech-badge">Interlock Design</span>
+        <span class="tech-badge">Control Wiring</span>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-num">PRJ_003</div>
+      <div class="project-title">Relay Logic Circuit Series (Tasks 1–30+)</div>
+      <div class="project-desc">
+        Systematic practice and documentation of 30+ relay logic circuits: 
+        DOL, Forward-Reverse, Star-Delta, Fault Annunciator, Auto Forward-Reverse, 
+        and more. Simulated and verified each circuit individually.
+      </div>
+      <div class="project-tech">
+        <span class="tech-badge">DOL Starter</span>
+        <span class="tech-badge">Star-Delta</span>
+        <span class="tech-badge">Fault Annunciator</span>
+        <span class="tech-badge">Auto F/R</span>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-num">PRJ_004</div>
+      <div class="project-title">24V PSU with NTC Thermistor Soft-Start</div>
+      <div class="project-desc">
+        Designed a 24V bench power supply with NTC thermistor-based inrush current 
+        limiting and an active soft-start circuit. Focused on protection, thermal 
+        behavior, and practical PCB-level implementation.
+      </div>
+      <div class="project-tech">
+        <span class="tech-badge">NTC Thermistor</span>
+        <span class="tech-badge">Soft-Start</span>
+        <span class="tech-badge">PSU Design</span>
+        <span class="tech-badge">Electronics</span>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-num">PRJ_005</div>
+      <div class="project-title">Panel Costing & MCCB Coordination Study</div>
+      <div class="project-desc">
+        Cross-verified L&T component pricing across MCCB, MCB, contactors, and MPCB. 
+        Sized MCCBs using Type 2 coordination charts, studied L&T dsine DN series 
+        in depth (DN0–DN4 frames, MTX trip unit variants, breaking capacity suffixes).
+      </div>
+      <div class="project-tech">
+        <span class="tech-badge">L&T dsine</span>
+        <span class="tech-badge">Type 2 Coordination</span>
+        <span class="tech-badge">Panel Costing</span>
+        <span class="tech-badge">IEC 61439</span>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-num">PRJ_006</div>
+      <div class="project-title">TIA Portal / VFD / HMI / SCADA Roadmap</div>
+      <div class="project-desc">
+        Created a self-directed 2-month learning roadmap for Siemens TIA Portal, 
+        VFD commissioning, HMI configuration, and SCADA basics. Structured for 
+        rapid job-readiness in Jaipur's Sitapura RIICO automation sector.
+      </div>
+      <div class="project-tech">
+        <span class="tech-badge">TIA Portal</span>
+        <span class="tech-badge">VFD</span>
+        <span class="tech-badge">HMI</span>
+        <span class="tech-badge">SCADA</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-label">04 — Say Hello</div>
+  <h2 class="section-title">Contact</h2>
+  <div class="divider"></div>
+  <div class="contact-wrapper">
+    <div class="contact-info">
+      <p>
+        Open to opportunities in PLC programming, system integration, and industrial automation. 
+        Based in Jaipur — also targeting Ahmedabad and Pune for the right role.
+      </p>
+      <div class="contact-links">
+        <div class="contact-link">
+          <span class="contact-link-icon">📍</span>
+          <div>
+            <div class="contact-link-label">Location</div>
+            <div class="contact-link-value">Jaipur, Rajasthan, India</div>
+          </div>
+        </div>
+        <div class="contact-link">
+          <span class="contact-link-icon">🏭</span>
+          <div>
+            <div class="contact-link-label">Current Role</div>
+            <div class="contact-link-value">Panel Automation Engineer, E&E Pvt. Ltd.</div>
+          </div>
+        </div>
+        <div class="contact-link">
+          <span class="contact-link-icon">🎯</span>
+          <div>
+            <div class="contact-link-label">Target Role</div>
+            <div class="contact-link-value">PLC Programmer / Automation Engineer</div>
+          </div>
+        </div>
+        <div class="contact-link">
+          <span class="contact-link-icon">📧</span>
+          <div>
+            <div class="contact-link-label">Email</div>
+            <div class="contact-link-value">your.email@example.com</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="terminal">
+      <div class="terminal-bar">
+        <div class="terminal-dot"></div>
+        <div class="terminal-dot"></div>
+        <div class="terminal-dot"></div>
+      </div>
+      <div class="terminal-line"><span class="cmd">$ whoami</span></div>
+      <div class="terminal-line"><span class="val">ashu_kumawat</span></div>
+      <div class="terminal-line">&nbsp;</div>
+      <div class="terminal-line"><span class="cmd">$ cat profile.json</span></div>
+      <div class="terminal-line">{</div>
+      <div class="terminal-line">&nbsp;&nbsp;<span class="key">"role"</span>: <span class="val">"Panel Automation Eng."</span>,</div>
+      <div class="terminal-line">&nbsp;&nbsp;<span class="key">"location"</span>: <span class="val">"Jaipur, RJ"</span>,</div>
+      <div class="terminal-line">&nbsp;&nbsp;<span class="key">"plc"</span>: <span class="val">"Siemens S7-1200"</span>,</div>
+      <div class="terminal-line">&nbsp;&nbsp;<span class="key">"software"</span>: <span class="val">"TIA Portal V20"</span>,</div>
+      <div class="terminal-line">&nbsp;&nbsp;<span class="key">"goal"</span>: <span class="val">"PLC + SCADA Engineer"</span>,</div>
+      <div class="terminal-line">&nbsp;&nbsp;<span class="key">"status"</span>: <span class="val">"open_to_work"</span></div>
+      <div class="terminal-line">}</div>
+      <div class="terminal-line">&nbsp;</div>
+      <div class="terminal-line"><span class="cmd">$ _<span class="cursor"></span></span></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span>© 2025 Ashu Kumawat</span>
+  <span>Electrical &amp; Automation Engineer — Jaipur, India</span>
+  <span>Built with HTML/CSS</span>
+</footer>
+
+</body>
+</html>
