@@ -528,13 +528,21 @@
       width: 100%;
       min-height: 42px;
       border: 1px solid rgba(0,0,0,0.16);
-      border-radius: 999px;
-      background: #f5f5f7;
-      color: var(--ink);
-      padding: 0 15px;
-      font-size: 14px;
-      font-weight: 700;
       outline: none;
+      color: var(--ink);
+      background: var(--white);
+      padding: 0 12px;
+      border-radius: 8px;
+    }
+
+    /* Fix invisible text while typing */
+    .light-band [contenteditable="true"]:focus, 
+    .light-band [data-editable="true"]:focus {
+      color: var(--ink) !important;
+      outline: none;
+      background: rgba(0,0,0,0.03);
+      border-radius: 4px;
+      padding: 2px 4px;
     }
 
     .project-link-editor input:focus {
@@ -776,23 +784,24 @@
       min-height: 44px;
       padding: 0 18px 0 42px;
       border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.14);
-      background: rgba(255,255,255,0.07);
-      color: var(--white);
+      border: 1px solid rgba(0,0,0,0.14);
+      background: rgba(0,0,0,0.04);
+      color: var(--ink);
       font-size: 15px;
       font-weight: 500;
       outline: none;
+      color-scheme: light;
       transition: border-color 160ms ease, box-shadow 160ms ease, background 160ms ease;
     }
 
     #projSearchInput::placeholder {
-      color: rgba(161,161,166,0.7);
+      color: rgba(0,0,0,0.5);
     }
 
     #projSearchInput:focus {
-      border-color: var(--blue-light);
-      background: rgba(255,255,255,0.1);
-      box-shadow: 0 0 0 3px rgba(41,151,255,0.18);
+      border-color: var(--blue);
+      background: rgba(0,0,0,0.02);
+      box-shadow: 0 0 0 3px rgba(0,113,227,0.18);
     }
 
     .proj-cat-pills {
@@ -808,21 +817,18 @@
       min-height: 32px;
       padding: 0 14px;
       border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.14);
-      background: rgba(255,255,255,0.06);
-      color: rgba(245,245,247,0.72);
+      border: 1px solid rgba(0,0,0,0.14);
+      background: rgba(0,0,0,0.04);
+      color: rgba(0,0,0,0.72);
       font-size: 13px;
       font-weight: 700;
-      cursor: pointer;
-      user-select: none;
-      transition: background 160ms ease, border-color 160ms ease, color 160ms ease, box-shadow 160ms ease;
       white-space: nowrap;
     }
 
     .proj-cat-pill:hover {
-      background: rgba(255,255,255,0.12);
-      color: var(--white);
-      border-color: rgba(255,255,255,0.25);
+      background: rgba(0,0,0,0.08);
+      color: var(--ink);
+      border-color: rgba(0,0,0,0.25);
     }
 
     .proj-cat-pill.active {
@@ -1317,7 +1323,8 @@
         <a href="#about" class="nav-item">About</a>
         <a href="#skills" class="nav-item">Skills</a>
         <a href="#projects" class="nav-item">Projects</a>
-        <a href="#contact" class="js-open-contact-modal nav-item">Contact</a>
+        <a href="blog/" class="nav-item">Blog</a>
+        <a href="2.%20Contact%20Form/6.%20add_linkedin_url.html" class="nav-item" target="_blank">Contact</a>
       </nav>
       <a class="nav-cta resume-link js-open-resume-modal" href="#" data-resume-link>Resume</a>
     </div>
@@ -1335,7 +1342,7 @@
         <p class="hero-copy reveal" data-editable="true">Building reliable electrical control systems - from panel hardware to PLC logic. Currently working in Jaipur, pushing toward full-stack automation: hardware + software + SCADA.</p>
         <div class="hero-actions reveal">
           <a class="pill primary" href="#projects">View Projects</a>
-          <a class="pill js-open-contact-modal" href="#contact">Contact</a>
+          <a class="pill" href="2. Contact Form/6. add_linkedin_url.html" target="_blank">Contact</a>
           <a class="pill" href="./ashu-kumawat.vcf" download="Ashu-Kumawat-Contact.vcf">Save My Contact 📇</a>
         </div>
         <label class="resume-link-editor reveal">
@@ -1524,8 +1531,8 @@
               <button class="delete-project" type="button" data-delete-project>Remove Project</button>
               <div>
                 <div class="project-code" data-editable="true">PRJ_001</div>
-                <a class="project-title" href="https://drive.google.com/drive/folders/1f3ZQRtR3qTxKRa0kUKEIrwfzyosnEutI" target="_blank" rel="noopener">
-                  <h3 data-editable="true">500-Task Automation Mastery Workbook</h3>
+                <a class="project-title" href="6. Projects/Starter/starter-hub-v2-stacked-design.html" target="_blank" rel="noopener">
+                  <h3 data-editable="true">Starter</h3>
                 </a>
                 <label class="project-link-editor">
                   <input type="url" value="https://drive.google.com/drive/folders/1f3ZQRtR3qTxKRa0kUKEIrwfzyosnEutI" placeholder="Project link">
@@ -1548,93 +1555,7 @@
             </div>
           </article>
 
-          <article class="project" data-proj-tags="PLC,Panel Design">
-            <div class="project-copy">
-              <button class="delete-project" type="button" data-delete-project>Remove Project</button>
-              <div>
-                <div class="project-code" data-editable="true">PRJ_002</div>
-                <a class="project-title" href="https://drive.google.com/drive/folders/1f3ZQRtR3qTxKRa0kUKEIrwfzyosnEutI" target="_blank" rel="noopener">
-                  <h3 data-editable="true">ACB Control Circuit Design</h3>
-                </a>
-                <label class="project-link-editor">
-                  <input type="url" value="https://drive.google.com/drive/folders/1f3ZQRtR3qTxKRa0kUKEIrwfzyosnEutI" placeholder="Project link">
-                </label>
-              </div>
-              <p data-editable="true">Designed and implemented an ACB (Air Circuit Breaker) control circuit when challenged by a senior engineer on the job. Demonstrated deep understanding of protection interlocks and control wiring under pressure.</p>
-              <div class="tags">
-                <span class="tag" data-editable="true">ACB Control</span>
-                <span class="tag" data-editable="true">Relay Logic</span>
-                <span class="tag" data-editable="true">Interlock Design</span>
-              </div>
-            </div>
-            <div class="project-screen" aria-hidden="true">
-              <div class="screen-card">
-                <div class="screen-line mid"></div>
-                <div class="screen-line wide"></div>
-                <div class="screen-line short"></div>
-                <div class="screen-grid"><span></span><span></span><span></span><span></span><span></span><span></span></div>
-              </div>
-            </div>
-          </article>
 
-          <article class="project" data-proj-tags="Panel Design,Simulation">
-            <div class="project-copy">
-              <button class="delete-project" type="button" data-delete-project>Remove Project</button>
-              <div>
-                <div class="project-code" data-editable="true">PRJ_003</div>
-                <a class="project-title" href="https://drive.google.com/drive/folders/1f3ZQRtR3qTxKRa0kUKEIrwfzyosnEutI" target="_blank" rel="noopener">
-                  <h3 data-editable="true">Relay Logic Circuit Series (Tasks 1-30+)</h3>
-                </a>
-                <label class="project-link-editor">
-                  <input type="url" value="https://drive.google.com/drive/folders/1f3ZQRtR3qTxKRa0kUKEIrwfzyosnEutI" placeholder="Project link">
-                </label>
-              </div>
-              <p data-editable="true">Systematic practice and documentation of 30+ relay logic circuits: DOL, Forward-Reverse, Star-Delta, Fault Annunciator, Auto Forward-Reverse, and more. Simulated and verified each circuit individually.</p>
-              <div class="tags">
-                <span class="tag" data-editable="true">DOL Starter</span>
-                <span class="tag" data-editable="true">Star-Delta</span>
-                <span class="tag" data-editable="true">Fault Annunciator</span>
-              </div>
-            </div>
-            <div class="project-screen" aria-hidden="true">
-              <div class="screen-card">
-                <div class="screen-line short"></div>
-                <div class="screen-line wide"></div>
-                <div class="screen-line mid"></div>
-                <div class="screen-grid"><span></span><span></span><span></span><span></span><span></span><span></span></div>
-              </div>
-            </div>
-          </article>
-
-          <article class="project" data-proj-tags="Panel Design,Protection">
-            <div class="project-copy">
-              <button class="delete-project" type="button" data-delete-project>Remove Project</button>
-              <div>
-                <div class="project-code" data-editable="true">PRJ_004</div>
-                <a class="project-title" href="https://drive.google.com/drive/folders/1f3ZQRtR3qTxKRa0kUKEIrwfzyosnEutI" target="_blank" rel="noopener">
-                  <h3 data-editable="true">Motor Starters Guide</h3>
-                </a>
-                <label class="project-link-editor">
-                  <input type="url" value="https://drive.google.com/drive/folders/1f3ZQRtR3qTxKRa0kUKEIrwfzyosnEutI" placeholder="Project link">
-                </label>
-              </div>
-              <p data-editable="true">Motor starters are devices designed to safely start, stop, reverse, or protect electric motors. Key types include Direct-On-Line (DOL) for small motors, Star-Delta for large induction motors, Autotransformers for high-starting torque, and Soft Starters/VFDs for smooth acceleration and speed control.</p>
-              <div class="tags">
-                <span class="tag" data-editable="true">Motor Starters</span>
-                <span class="tag" data-editable="true">DOL</span>
-                <span class="tag" data-editable="true">Star-Delta</span>
-                <span class="tag" data-editable="true">VFD</span>
-              </div>
-            </div>
-            <div class="project-screen" aria-hidden="true">
-              <div class="screen-card">
-                <div class="screen-line wide"></div>
-                <div class="screen-line short"></div>
-                <div class="screen-line mid"></div>
-                <div class="screen-grid"><span></span><span></span><span></span><span></span><span></span><span></span></div>
-              </div>
-            </div>
-          </article>
         </div>
 
         <div class="project-actions">
@@ -2196,4 +2117,5 @@
   </script>
 </body>
 </html>
+
 
