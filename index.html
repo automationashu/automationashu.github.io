@@ -1432,7 +1432,7 @@
         fetch(scriptUrl + "?ua=" + ua, { mode: 'no-cors' }).catch(e => {});
       }
       
-      fetch("https://get.geojs.io/v1/ip/geo.json")
+      fetch("https://get.geojs.io/v1/ip/geo.json", { cache: 'no-store' })
         .then(res => res.json())
         .then(data => sendAlert((data.city || data.region || "Unknown City") + ", " + (data.country || "Unknown Country")))
         .catch(err => sendAlert("Hidden/Adblocked"));
