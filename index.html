@@ -384,46 +384,74 @@
       text-transform: uppercase;
     }
 
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 18px;
+    .showcase-container {
+      width: 100%;
+      max-width: 900px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin: 0 auto;
     }
 
-    .skill-card {
-      min-height: 400px;
-      padding: 28px;
+    .apple-pill {
+      background: #1d1d1f;
+      border-radius: 999px;
       overflow: hidden;
+      cursor: pointer;
+      position: relative;
       transform: translateY(18px);
       opacity: 0;
-      transition: opacity 650ms ease, transform 650ms ease;
+      transition: opacity 650ms ease, transform 650ms ease, border-radius 0.4s cubic-bezier(0.16, 1, 0.3, 1), background 0.3s ease;
+      width: 100%;
     }
-
-    .skill-card.show {
+    
+    .apple-pill.show {
       opacity: 1;
       transform: translateY(0);
     }
 
-    .skill-card:nth-child(2) { transition-delay: 60ms; }
-    .skill-card:nth-child(3) { transition-delay: 120ms; }
-    .skill-card:nth-child(4) { transition-delay: 40ms; }
-    .skill-card:nth-child(5) { transition-delay: 100ms; }
-    .skill-card:nth-child(6) { transition-delay: 160ms; }
+    .apple-pill:nth-child(2) { transition-delay: 60ms; }
+    .apple-pill:nth-child(3) { transition-delay: 120ms; }
+    .apple-pill:nth-child(4) { transition-delay: 180ms; }
+    .apple-pill:nth-child(5) { transition-delay: 240ms; }
+    .apple-pill:nth-child(6) { transition-delay: 300ms; }
 
-    .skill-number {
-      margin-bottom: 24px;
-      color: rgba(245,245,247,0.42);
-      font-size: 14px;
-      font-weight: 800;
-    }
+    .apple-pill:hover { background: #2d2d2f; }
 
-    .skill-card h3 {
-      margin: 0 0 16px;
-      font-size: clamp(30px, 3.4vw, 42px);
-      line-height: 0.96;
-      letter-spacing: -0.065em;
-      font-weight: 800;
+    .spotlight {
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none;
+      background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(255,255,255,0.12) 0%, transparent 40%);
+      opacity: 0; transition: opacity 0.3s ease; z-index: 0;
     }
+    .apple-pill:hover .spotlight { opacity: 1; }
+
+    .apple-pill.active { background: #1d1d1f; border-radius: 32px; cursor: default; }
+
+    .pill-header { display: flex; align-items: center; padding: 16px 24px; gap: 16px; position: relative; z-index: 1; }
+    
+    .pill-icon {
+      width: 32px; height: 32px; border-radius: 50%; background: #333336; display: flex; align-items: center; justify-content: center;
+      position: relative; flex-shrink: 0; transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), background 0.3s ease;
+    }
+    .apple-pill:hover .pill-icon { background: #444446; }
+    .apple-pill.active .pill-icon { transform: rotate(45deg); background: #ffffff; }
+
+    .pill-icon::before, .pill-icon::after { content: ''; position: absolute; background: #86868b; transition: background 0.3s ease; }
+    .pill-icon::before { width: 12px; height: 1.5px; } .pill-icon::after { width: 1.5px; height: 12px; }
+    .apple-pill.active .pill-icon::before, .apple-pill.active .pill-icon::after { background: #000000; }
+
+    .pill-title { font-size: 1.3rem; font-weight: 500; letter-spacing: -0.02em; margin: 0; color: #f5f5f7; }
+
+    .pill-content-wrapper { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.4s cubic-bezier(0.16, 1, 0.3, 1); position: relative; z-index: 1;}
+    .apple-pill.active .pill-content-wrapper { grid-template-rows: 1fr; }
+    .pill-content { overflow: hidden; }
+
+    .pill-content-inner { padding: 0 24px 32px 72px; opacity: 0; transform: translateY(-10px); transition: opacity 0.4s ease, transform 0.4s ease; }
+    .apple-pill.active .pill-content-inner { opacity: 1; transform: translateY(0); transition-delay: 0.1s; }
+
+    .skill-description { color: #86868b; font-size: 1.1rem; line-height: 1.5; margin: 0 0 20px 0; max-width: 600px; }
+    
+    @media (max-width: 600px) { .pill-content-inner { padding: 0 24px 24px 24px; } }
 
     .tags {
       display: flex;
@@ -752,9 +780,9 @@
 
 
 
-    /* ÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚Â
-       FEATURE 1 ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â PROJECT SEARCH + CATEGORY FILTER
-    ÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚Â */
+    /* ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚Â
+       FEATURE 1 ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â PROJECT SEARCH + CATEGORY FILTER
+    ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚Â */
     .proj-filter-bar {
       margin-bottom: 32px;
       display: flex;
@@ -859,9 +887,9 @@
       display: none !important;
     }
 
-    /* Ã¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢Â
-       FEATURE 3 Ã¢â‚¬â€ RESUME DOWNLOAD MODAL
-  Ã¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢Â */
+    /* ÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚Â
+       FEATURE 3 ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â RESUME DOWNLOAD MODAL
+  ÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚Â */
   <div class="contact-modal-overlay" id="resumeModalOverlay" role="dialog" aria-modal="true" aria-label="Download Resume">
     <div class="contact-modal" id="resumeModal" style="max-width: 380px;">
       <button class="modal-close-btn" id="resumeModalCloseBtn" aria-label="Close modal">&#x2715;</button>
@@ -874,9 +902,9 @@
     </div>
   </div>
 
-  /* Ã¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢Â
-       FEATURE 2 Ã¢â‚¬â€ GET IN TOUCH MODAL
-  Ã¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢Â */
+  /* ÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚Â
+       FEATURE 2 ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â GET IN TOUCH MODAL
+  ÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚Â */
     .contact-modal-overlay {
       position: fixed;
       inset: 0;
@@ -1050,7 +1078,7 @@
       flex-shrink: 0;
     }
 
-    /* Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€ Responsive Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€ */
+    /* ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Responsive ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â */
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
       .reveal,
@@ -1152,9 +1180,9 @@
       .stat { padding: 14px; }
     }
 
-    /* Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€ 
+    /* ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â 
        APPLE-STYLE MOTION SYSTEM
-    Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€ */
+    ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â */
     :root {
       --ease-premium: cubic-bezier(0.25, 0.46, 0.45, 0.94);
       --translate-mult: 1;
@@ -1303,6 +1331,46 @@
         transition: none !important;
       }
     }
+            /* Skills Accordion - Click Only */
+    .skills-accordion { display: flex; width: 100%; height: 60vh; min-height: 400px; gap: 12px; margin-top: 40px; }
+    .skills-panel { flex: 2; position: relative; background: #1c1c1e; border-radius: 20px; border: 1px solid #333; overflow: hidden; cursor: pointer; transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); display: flex; flex-direction: column; }
+    .skills-indicator { padding: 20px; font-size: 1.2rem; font-weight: 600; color: #8e8e93; transition: color 0.3s; }    /* Skills Accordion - Click Only */
+    .skills-accordion { display: flex; width: 100%; height: 60vh; min-height: 400px; gap: 12px; margin-top: 40px; }
+    .skills-panel { flex: 2; position: relative; background: #1c1c1e; border-radius: 20px; border: 1px solid #333; overflow: hidden; cursor: pointer; transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); display: flex; flex-direction: column; }
+    .skills-indicator { padding: 20px; font-size: 1.2rem; font-weight: 600; color: #8e8e93; transition: color 0.3s; }
+    
+    .skill-name {
+      position: absolute;
+      top: 70px;
+      left: 15px;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #f5f5f7;
+      white-space: normal;
+      line-height: 1.2;
+      word-wrap: break-word;
+      max-width: calc(100% - 30px);
+      transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    
+    /* Active State (Click) */
+    .skills-panel.active { flex: 6; background: #2c2c2e; box-shadow: 0 20px 40px rgba(0,0,0,0.8); }
+    .skills-panel.active .skills-indicator { color: #f5f5f7; }
+    .skills-panel.active .skill-name {
+      top: 30px; left: 70px; font-size: 3rem; font-weight: 700;
+      white-space: nowrap; letter-spacing: -0.03em; max-width: none; opacity: 1;
+    }
+    
+    @media (max-width: 768px) {
+      .skills-accordion { flex-direction: column; height: 80vh; }
+      .skills-panel { flex: 1; }
+      .skill-name { top: 60px; left: 15px; font-size: 1.1rem; }
+      
+      .skills-panel.active { flex: 3; }
+      .skills-panel.active .skill-name { font-size: 1.8rem; top: 20px; left: 50px; }
+      
+      .skills-indicator { padding: 15px; }
+    }
   </style>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-R5SEGQ672E"></script>
@@ -1312,6 +1380,63 @@
     gtag('js', new Date());
 
     gtag('config', 'G-R5SEGQ672E');
+  </script>  <script>
+    // Telegram Visitor Alert (Advanced Detective Mode)
+    window.addEventListener('DOMContentLoaded', () => {
+      const getDeviceType = () => {
+        const ua = navigator.userAgent;
+        if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua)) return "Tablet";
+        if (/Mobile|iP(hone|od)|Android|BlackBerry|IEMobile|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/.test(ua)) return "Mobile";
+        return "Desktop";
+      };
+      
+      const getOS = () => {
+        const p = navigator.platform.toLowerCase();
+        const ua = navigator.userAgent;
+        if (p.includes("win")) return "Windows";
+        if (p.includes("mac")) return "Mac";
+        if (p.includes("linux") && !/Android/.test(ua)) return "Linux";
+        if (/iPhone|iPad|iPod/.test(ua)) return "iOS";
+        if (/Android/.test(ua)) return "Android";
+        return navigator.platform;
+      };
+      
+      const getBrowser = () => {
+        const ua = navigator.userAgent;
+        if (ua.includes("Firefox")) return "Firefox";
+        if (ua.includes("SamsungBrowser")) return "Samsung Internet";
+        if (ua.includes("Opera") || ua.includes("OPR")) return "Opera";
+        if (ua.includes("Edge") || ua.includes("Edg")) return "Edge";
+        if (ua.includes("Chrome")) return "Chrome";
+        if (ua.includes("Safari")) return "Safari";
+        return "Other";
+      };
+      
+      let ref = document.referrer;
+      if (!ref) ref = "Direct Link";
+      else { try { ref = new URL(ref).hostname; } catch(e) {} }
+      
+      const net = (navigator.connection && navigator.connection.effectiveType) ? navigator.connection.effectiveType.toUpperCase() : "Unknown";
+      
+      const scriptId = "AKfycbygmKYqd8gEKWM1CpFR3IG4LOJSN8pjckafRZX76BxfUUrSe0a8tdOjNvtLQaBXTnOffQ";
+      const scriptUrl = "https://script.google.com/macros/s/" + scriptId + "/exec";
+      
+      function sendAlert(location) {
+        let msg = getDeviceType() + " (" + getOS() + ")%0A";
+        msg += "\uD83C\uDF10 Browser: " + getBrowser() + "%0A";
+        msg += "\uD83D\uDCF6 Network: " + net + "%0A";
+        msg += "\uD83D\uDCCD Location: " + location + "%0A";
+        msg += "\uD83D\uDD17 Came From: " + ref;
+        
+        const ua = encodeURIComponent(msg).replace(/%250A/g, '%0A');
+        fetch(scriptUrl + "?ua=" + ua, { mode: 'no-cors' }).catch(e => {});
+      }
+      
+      fetch("https://get.geojs.io/v1/ip/geo.json")
+        .then(res => res.json())
+        .then(data => sendAlert(data.city + ", " + data.country))
+        .catch(err => sendAlert("Hidden/Adblocked"));
+    });
   </script>
 </head>
 <body>
@@ -1400,87 +1525,13 @@
           <p class="summary reveal" data-editable="true">A complete skill map across panel engineering, PLC automation, control circuits, standards, electronics, and tools.</p>
         </div>
 
-        <div class="skills-grid">
-          <article class="skill-card">
-            <div class="skill-number">01</div>
-            <h3 data-editable="true">PLC & Automation</h3>
-            <div class="tags">
-              <span class="tag" data-editable="true">Siemens S7-1200</span>
-              <span class="tag" data-editable="true">TIA Portal V15/V20</span>
-              <span class="tag" data-editable="true">Ladder Logic</span>
-              <span class="tag" data-editable="true">Factory I/O</span>
-              <span class="tag" data-editable="true">PLCSIM Advanced</span>
-              <span class="tag" data-editable="true">Interlock Logic</span>
-              <span class="tag" data-editable="true">SCADA</span>
-            </div>
-          </article>
-
-          <article class="skill-card">
-            <div class="skill-number">02</div>
-            <h3 data-editable="true">Panel Engineering</h3>
-            <div class="tags">
-              <span class="tag" data-editable="true">VFD Panels</span>
-              <span class="tag" data-editable="true">DOL Starters</span>
-              <span class="tag" data-editable="true">Star-Delta</span>
-              <span class="tag" data-editable="true">MCCB Selection</span>
-              <span class="tag" data-editable="true">Busbar Design</span>
-              <span class="tag" data-editable="true">APFC Panels</span>
-              <span class="tag" data-editable="true">Control Transformer</span>
-              <span class="tag" data-editable="true">L&T dsine Series</span>
-            </div>
-          </article>
-
-          <article class="skill-card">
-            <div class="skill-number">03</div>
-            <h3 data-editable="true">Control Circuits</h3>
-            <div class="tags">
-              <span class="tag" data-editable="true">Relay Logic</span>
-              <span class="tag" data-editable="true">Forward-Reverse</span>
-              <span class="tag" data-editable="true">Fault Annunciator</span>
-              <span class="tag" data-editable="true">ACB Control</span>
-              <span class="tag" data-editable="true">PID Theory</span>
-            </div>
-          </article>
-
-          <article class="skill-card">
-            <div class="skill-number">04</div>
-            <h3 data-editable="true">Standards & Design</h3>
-            <div class="tags">
-              <span class="tag" data-editable="true">IEC 61439</span>
-              <span class="tag" data-editable="true">IEC 61131-2</span>
-              <span class="tag" data-editable="true">IEC 61131-3</span>
-              <span class="tag" data-editable="true">LD (Ladder Diagram)</span>
-              <span class="tag" data-editable="true">ST / SCL (Structured Text)</span>
-              <span class="tag" data-editable="true">IS 3043 Earthing</span>
-              <span class="tag" data-editable="true">Type 2 Coordination</span>
-              <span class="tag" data-editable="true">GA Drawings</span>
-              <span class="tag" data-editable="true">Panel Costing</span>
-              <span class="tag" data-editable="true">BOM / BOQ</span>
-            </div>
-          </article>
-
-          <article class="skill-card">
-            <div class="skill-number">05</div>
-            <h3 data-editable="true">Electronics & DIY</h3>
-            <div class="tags">
-              <span class="tag" data-editable="true">24V PSU Design</span>
-              <span class="tag" data-editable="true">NTC Thermistor</span>
-              <span class="tag" data-editable="true">Soft-Start Circuit</span>
-              <span class="tag" data-editable="true">Solar Charging</span>
-            </div>
-          </article>
-
-          <article class="skill-card">
-            <div class="skill-number">06</div>
-            <h3 data-editable="true">Tools & Software</h3>
-            <div class="tags">
-              <span class="tag" data-editable="true">TIA Portal</span>
-              <span class="tag" data-editable="true">Factory I/O</span>
-              <span class="tag" data-editable="true">PLCSIM Advanced</span>
-              <span class="tag" data-editable="true">SFTP Server</span>
-              <span class="tag" data-editable="true">MS Excel</span>
-            </div>
-          </article>
+        <div class="skills-accordion">
+          <div class="skills-panel" onclick="activateSkillPanel(this)"><div class="skills-indicator">01</div><div class="skill-name">Siemens S7-1200</div></div>
+          <div class="skills-panel" onclick="activateSkillPanel(this)"><div class="skills-indicator">02</div><div class="skill-name">TIA Portal</div></div>
+          <div class="skills-panel" onclick="activateSkillPanel(this)"><div class="skills-indicator">03</div><div class="skill-name">SCADA Systems</div></div>
+          <div class="skills-panel" onclick="activateSkillPanel(this)"><div class="skills-indicator">04</div><div class="skill-name">AutoCAD Electrical</div></div>
+          <div class="skills-panel" onclick="activateSkillPanel(this)"><div class="skills-indicator">05</div><div class="skill-name">VFD Drives</div></div>
+          <div class="skills-panel" onclick="activateSkillPanel(this)"><div class="skills-indicator">06</div><div class="skill-name">Relay Logic</div></div>
         </div>
       </div>
     </section>
@@ -1672,9 +1723,9 @@
 
   <script>
     (function() {
-      // Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€ 
-      //  EDITABLE CONSTANTS Ã¢â‚¬â€ change these to update modal links
-      // Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€ 
+      // ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â 
+      //  EDITABLE CONSTANTS ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â change these to update modal links
+      // ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â 
       const CONTACT_EMAIL    = "contact@ashukumawat.com";
       const CONTACT_LINKEDIN = "https://www.linkedin.com/in/ashu-kumawatashu-kumawat-electricalengineer";
       const CONTACT_PHOTO    = "data:image/jpeg;base64,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";
@@ -1721,7 +1772,7 @@
 
         revealItems.forEach(function(el) { revealObserver.observe(el); });
 
-        const skillCards = document.querySelectorAll(".skill-card");
+        const skillCards = document.querySelectorAll(".apple-pill");
         skillCards.forEach(function(card, index) {
           card.style.transitionDelay = (index * 60) + "ms";
         });
@@ -1766,14 +1817,14 @@
         navObserver.observe(navSentinel);
       }
 
-      // ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ Wire modal buttons
+      // ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚ÂÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚ÂÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ Wire modal buttons
       document.getElementById("modalGmailBtn").href    = "https://mail.google.com/mail/?view=cm&fs=1&to=" + CONTACT_EMAIL;
       document.getElementById("modalLinkedinBtn").href = CONTACT_LINKEDIN;
       document.getElementById("modalAvatarImg").src    = CONTACT_PHOTO;
 
-      // ÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚Â
-      //  FEATURE 2 ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â CONTACT MODAL
-      // ÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚Â
+      // ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚Â
+      //  FEATURE 2 ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â CONTACT MODAL
+      // ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚Â
       const modalOverlay = document.getElementById("contactModalOverlay");
       const modalEl      = document.getElementById("contactModal");
       const closeBtn     = document.getElementById("modalCloseBtn");
@@ -1810,9 +1861,9 @@
         if (e.key === "Escape" && modalOverlay.classList.contains("open")) closeModal();
       });
 
-      // ÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚Â
-      //  FEATURE 1 ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â PROJECT SEARCH + CATEGORY FILTER
-      // ÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚Â
+      // ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚Â
+      //  FEATURE 1 ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â PROJECT SEARCH + CATEGORY FILTER
+      // ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚Â
       const projSearchInput = document.getElementById("projSearchInput");
       const projCatPills    = document.getElementById("projCatPills");
       const projectStack    = document.getElementById("projectStack");
@@ -1871,7 +1922,7 @@
         applyProjFilter();
       });
 
-      // Search input ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â debounced
+      // Search input ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â debounced
       var projSearchTimer;
       projSearchInput.addEventListener("input", function(e) {
         clearTimeout(projSearchTimer);
@@ -1881,9 +1932,9 @@
         }, 180);
       });
 
-      // ÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚Â
+      // ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚Â
       //  EXISTING LOGIC (100% preserved)
-      // ÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚Â
+      // ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢Ãƒâ€šÃ‚Â
       const STORAGE_KEY = "ashuAppleMasterPortfolioV5";
       const editBtn     = document.getElementById("editBtn");
       const downloadBtn = document.getElementById("downloadBtn");
@@ -2116,8 +2167,41 @@
         });
       }
 
+      // Skills Spotlight & Toggle Logic
+      window.togglePill = function(element) {
+        if (element.classList.contains('active')) { 
+          element.classList.remove('active'); 
+          return; 
+        }
+        document.querySelectorAll('.apple-pill').forEach(pill => pill.classList.remove('active'));
+        element.classList.add('active');
+      };
+      
+      document.querySelectorAll('.apple-pill').forEach(pill => {
+        pill.addEventListener('mousemove', (e) => {
+          const rect = pill.getBoundingClientRect();
+          const x = e.clientX - rect.left; 
+          const y = e.clientY - rect.top;
+          pill.style.setProperty('--x', `${x}px`); 
+          pill.style.setProperty('--y', `${y}px`);
+        });
+      });
+
     })();
   </script>
+<script>
+  function activateSkillPanel(element) {
+    document.querySelectorAll('.skills-panel').forEach(panel => {
+      panel.classList.remove('active');
+    });
+    element.classList.add('active');
+  }
+  // Initialize the first panel to be active
+  window.addEventListener('DOMContentLoaded', () => {
+    const firstPanel = document.querySelector('.skills-panel');
+    if (firstPanel) firstPanel.classList.add('active');
+  });
+</script>
 </body>
 </html>
 
